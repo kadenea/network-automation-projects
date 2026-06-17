@@ -1,0 +1,6 @@
+hostname,ip_address,device_type,location,vlan_count
+R1-CORE,192.168.1.1,Cisco IOS Router,Data Center,0
+SW1-ACCESS,192.168.1.10,Cisco IOS Switch,Floor 1,24
+SW2-ACCESS,192.168.1.11,Cisco IOS Switch,Floor 2,18
+FW-EDGE,192.168.1.254,ASA Firewall,Perimeter,0
+SW3-DIST,192.168.1.20,Cisco IOS Switch,Distribution,12
