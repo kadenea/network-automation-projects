@@ -13,10 +13,10 @@ def subnet_info(network):
         net = ipaddress.ip_network(network, strict=False)
     except ValueError as e:
         print(f'Error: {e}')
-        return
+        return False
 
     print('=' * 55)
-    print(f'{'SUBNET INFORMATION':^55}')
+    print(f"{'SUBNET INFORMATION':^55}")
     print(f'Input network: {network}')
     print('=' * 55)
 
@@ -25,10 +25,17 @@ def subnet_info(network):
     print(f'Subnet mask: {net.netmask}')
     print(f'Number of usable hosts: {net.num_addresses - 2}')
     print(f'Usable host range: {net.network_address + 1 } - {net.broadcast_address - 1}')
+    return True
 
 def check_ip(network, ip):
-    check = ipaddress.ip_address(ip)
-    net = ipaddress.ip_network(network, strict=False)
+    try:
+        check = ipaddress.ip_address(ip)
+        net = ipaddress.ip_network(network, strict=False)
+    except ValueError as e:
+        print('=' * 55)
+        print(f'Error: {e}')
+        return
+    
     print('=' * 55)
     if check in net:
         print('✓ in subnet')
@@ -38,6 +45,6 @@ def check_ip(network, ip):
 if __name__ == '__main__':
     parser = build_parser()
     args = parser.parse_args()
-    subnet_info(args.network)
-    if args.check:
+    success = subnet_info(args.network)
+    if args.check and success:
         check_ip(args.network, args.check)
