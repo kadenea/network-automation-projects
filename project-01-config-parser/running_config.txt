@@ -1,0 +1,115 @@
+Current configuration : 1643 bytes
+!
+version 15.1
+service timestamps debug datetime msec
+service timestamps log datetime msec
+service password-encryption
+!
+hostname R1
+!
+boot-start-marker
+boot-end-marker
+!
+! card type command needed for slot/vwic-slot 0/0
+!
+no aaa new-model
+!
+no ipv6 cef
+ip source-route
+ip cef
+!
+!
+!
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+license udi pid CISCO2911/K9 sn FGL21468269
+!
+!
+!
+!
+bridge irb
+!
+!
+!
+!
+interface GigabitEthernet0/0
+ no ip address
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/0.10
+ encapsulation dot1Q 10
+ bridge-group 10
+!
+interface GigabitEthernet0/0.20
+ encapsulation dot1Q 20
+ bridge-group 20
+!
+interface GigabitEthernet0/1
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/1.10
+ encapsulation dot1Q 10
+ bridge-group 10
+!
+interface GigabitEthernet0/1.20
+ encapsulation dot1Q 20
+ bridge-group 20
+!
+interface GigabitEthernet0/2
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+!
+interface Serial0/1/0
+ no ip address
+ shutdown
+ no fair-queue
+ clock rate 2000000
+!
+interface BVI10
+ description Gateway for Users (VLAN 10)
+ ip address 192.168.10.2 255.255.255.0
+ standby 10 ip 192.168.10.1
+ standby 10 priority 110
+ standby 10 preempt
+!
+interface BVI20
+ description Gateway for Servers (VLAN 20)
+ ip address 192.168.20.2 255.255.255.0
+ standby 20 ip 192.168.20.1
+ standby 20 preempt
+!
+ip forward-protocol nd
+!
+no ip http server
+no ip http secure-server
+!
+!
+!
+!
+!
+control-plane
+!
+bridge 10 protocol ieee
+bridge 10 route ip
+bridge 20 protocol ieee
+bridge 20 route ip
+!
+line con 0
+ password 7 00071A150754
+line aux 0
+line vty 0 4
+ login
+ transport input all
+!
+scheduler allocate 20000 1000
+end
