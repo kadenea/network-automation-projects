@@ -1,0 +1,241 @@
+Building configuration...
+
+Current configuration : 5633 bytes
+!
+version 15.0
+no service pad
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname S1
+!
+boot-start-marker
+boot-end-marker
+!
+enable secret 5 $1$KLjF$EetIaor.Aynma.lSGCshR0
+!
+username automate privilege 15 secret 5 $1$x3j6$53gCKhYEz5Gm5nz37CjSN1
+no aaa new-model
+system mtu routing 1500
+!
+!
+ip domain-name lab.local
+!
+!
+crypto pki trustpoint TP-self-signed-2321285888
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-2321285888
+ revocation-check none
+ rsakeypair TP-self-signed-2321285888
+!
+!
+crypto pki certificate chain TP-self-signed-2321285888
+ certificate self-signed 01
+  3082022B 30820194 A0030201 02020101 300D0609 2A864886 F70D0101 05050030 
+  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 32333231 32383538 3838301E 170D3933 30333031 30303031 
+  31325A17 0D323030 31303130 30303030 305A3031 312F302D 06035504 03132649 
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D32 33323132 
+  38353838 3830819F 300D0609 2A864886 F70D0101 01050003 818D0030 81890281 
+  8100CBA6 A8F69763 F400BD5A 1581D33D 4AA253CF 466141E7 DFE02EEF 4CAEE798 
+  0A0FB879 6ED1196F 4DCA9623 E9372820 677F3E07 B10B697B 5398BDC0 D14FBA0C 
+  003EFCFD 5CF6C927 6F64D159 2A039465 41B9D710 C9682F01 8477E2DF 1EB208F2 
+  E0C0BAB1 9C83383D 88A6E20C 564A3133 73DCD7EE E740F38C 3965157C 0F0CA8F9 
+  EDA10203 010001A3 53305130 0F060355 1D130101 FF040530 030101FF 301F0603 
+  551D2304 18301680 14B6065A 80902E12 6434EC16 7BB62A47 4F6D0395 FD301D06 
+  03551D0E 04160414 B6065A80 902E1264 34EC167B B62A474F 6D0395FD 300D0609 
+  2A864886 F70D0101 05050003 8181007A 861FE26B 0CC8BFD9 DFAE762D D7F6A16E 
+  97BF166C EDD0054B 80FE59FA C96022BD 1F161E45 91417570 252B7788 FC00B97F 
+  B4CA5537 A00F0D8D 656A9D66 513F995A D0BA0B93 A6CCE085 CDE3FF64 6C4DC0D2 
+  6FBE973A 19D6E2C2 8EC2BAC6 088007F8 FB60BAEB EFA7B4CC 703DF506 A45AFBD2 
+  AB93A3A2 E97AABB0 CEB10A47 8C701D
+  	quit
+!
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+spanning-tree vlan 10 priority 24576
+spanning-tree vlan 20 priority 28672
+!
+vlan internal allocation policy ascending
+!
+ip ssh version 2
+!
+!
+!
+!
+!
+interface FastEthernet0/1
+ description Trunk Links to R1 and R2
+ switchport trunk allowed vlan 10,20
+ switchport mode trunk
+!
+interface FastEthernet0/2
+ description Trunk Links to R1 and R2
+ switchport trunk allowed vlan 10,20
+ switchport mode trunk
+!
+interface FastEthernet0/3
+ description User Port
+ switchport access vlan 10
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet0/4
+ description User Port
+ switchport access vlan 10
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet0/5
+ description User Port
+ switchport access vlan 10
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet0/6
+ description User Port
+ switchport access vlan 10
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet0/7
+ description User Port
+ switchport access vlan 10
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet0/8
+ description User Port
+ switchport access vlan 10
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet0/9
+ description User Port
+ switchport access vlan 10
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet0/10
+ description User Port
+ switchport access vlan 10
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet0/11
+ description User Port
+ switchport access vlan 10
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet0/12
+ description User Port
+ switchport access vlan 10
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet0/13
+ description User Port
+ switchport access vlan 10
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet0/14
+ description User Port
+ switchport access vlan 10
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet0/15
+ description User Port
+ switchport access vlan 10
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet0/16
+ description User Port
+ switchport access vlan 10
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet0/17
+ description User Port
+ switchport access vlan 10
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet0/18
+ description User Port
+ switchport access vlan 10
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet0/19
+ description User Port
+ switchport access vlan 10
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet0/20
+ description User Port
+ switchport access vlan 10
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet0/21
+ description User Port
+ switchport access vlan 10
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet0/22
+ description User Port
+ switchport access vlan 10
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet0/23
+ description User Port
+ switchport access vlan 10
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet0/24
+ description Inter-Switch Trunk to S2
+ switchport trunk allowed vlan 10,20
+ switchport mode trunk
+!
+interface GigabitEthernet0/1
+!
+interface GigabitEthernet0/2
+!
+interface Vlan1
+ no ip address
+!
+interface Vlan10
+ description Management Interface for S1
+ ip address 192.168.10.4 255.255.255.0
+!
+interface Vlan20
+ no ip address
+!
+ip default-gateway 192.168.10.1
+ip http server
+ip http secure-server
+!
+!
+line con 0
+ password cisco
+line vty 0 4
+ login local
+ transport input ssh
+line vty 5 15
+ login
+!
+end
